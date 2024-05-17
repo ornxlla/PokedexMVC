@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/PokedexMVC.iml" filepath="$PROJECT_DIR$/.idea/PokedexMVC.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/Pokedex.iml" filepath="$PROJECT_DIR$/.idea/Pokedex.iml" />
+>>>>>>> 54c839c8074713cb08c737e26cb7581f6e282c2c
     </modules>
   </component>
 </project>
