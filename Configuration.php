@@ -9,7 +9,6 @@ include_once("model/UserModel.php");
 
 include_once ("helper/Database.php");
 include_once ("helper/Router.php");
-
 include_once ("helper/Presenter.php");
 include_once ("helper/MustachePresenter.php");
 
@@ -18,13 +17,17 @@ include_once('vendor/mustache/src/Mustache/Autoloader.php');
 class Configuration
 {
 
+    public function __construct()
+    {
+    }
+
     // CONTROLLERS
     public static function getUserController()
     {
         return new UserController(self::getPresenter(), self::getUserModel());
     }
 
-// MODELS
+    // MODELS
     private static function getUserModel()
     {
         return new UserModel(self::getDatabase());

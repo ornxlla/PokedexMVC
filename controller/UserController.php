@@ -17,7 +17,7 @@ private $presenter;
     public function getUsuario()
     {
         $usuarios = $this->model->getUsuario();
-        $this->presenter->render("view/template/header.mustache", ["usuarios" => $usuarios]);
+        //$this->presenter->render("view/template/iniciarSesion.mustache", ["usuarios" => $usuarios]);
     }
 
     public function get(){

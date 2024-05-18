@@ -19,7 +19,13 @@ class MustachePresenter{
 
     public function generateHtml($contentFile, $data = array()) {
         $contentAsString = file_get_contents(  $this->partialsPathLoader .'/header.mustache');
-        $contentAsString .= file_get_contents( $contentFile );
+        //$contentAsString .= file_get_contents( $contentFile );
+        if(isset($data["usuario"])){
+            $contentAsString .= file_get_contents(  $this->partialsPathLoader .'/usuarioLoggeado.mustache');
+        }else{
+            $contentAsString .= file_get_contents(  $this->partialsPathLoader .'/iniciarSesion.mustache');
+        }
+
         $contentAsString .= file_get_contents($this->partialsPathLoader . '/footer.mustache');
         return $this->mustache->render($contentAsString, $data);
     }
