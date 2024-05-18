@@ -4,8 +4,10 @@ use controller\UserController;
 use model\UserModel;
 
 include_once ("controller/UserController.php");
+include_once ("controller/PokemonController.php");
 
 include_once("model/UserModel.php");
+include_once ("model/PokemonModel.php");
 
 include_once ("helper/Database.php");
 include_once ("helper/Router.php");
