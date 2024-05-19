@@ -11,9 +11,9 @@ class UserModel
         $this->database = $database;
     }
 
-    public function getUsuario()
+    public function getUsuario($usuario, $password)
     {
-        return $this->database->query("SELECT * FROM login");
+        return $this->database->query("SELECT * FROM login WHERE usuario = $usuario AND password = $password");
     }
 
 }

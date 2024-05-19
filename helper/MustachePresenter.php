@@ -18,7 +18,8 @@ class MustachePresenter{
     }
 
     public function generateHtml($contentFile, $data = array()) {
-        $contentAsString = file_get_contents($contentFile);
+        $contentAsString = file_get_contents($this->partialsPathLoader . '/header.mustache');
+        $contentAsString .= file_get_contents('view/' . $contentFile . '_view.mustache');
         $contentAsString .= file_get_contents($this->partialsPathLoader . '/footer.mustache');
         return $this->mustache->render($contentAsString, $data);
     }
