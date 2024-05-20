@@ -15,10 +15,12 @@ class PokemonController
         $this->model = $model;
     }
 
+
+
     public function getPokemon()
     {
-        $pokemons = $this->model->getPokemons();
-        $this->presenter->render("view/template/pokemon.mustache", ["pokemons" => $pokemons]);
+        $data["pokemon"] = $this->model->getPokemons();
+        $this->presenter->render("pokemon", $data);
 
 
     }

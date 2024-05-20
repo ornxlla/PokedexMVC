@@ -1,5 +1,6 @@
 <?php
 
+use controller\PokemonController;
 use controller\UserController;
 use model\UserModel;
 
@@ -20,17 +21,27 @@ class Configuration
 {
 
     // CONTROLLERS
+    // CONTROLLERS
     public static function getUserController()
     {
         return new UserController(self::getPresenter(), self::getUserModel());
     }
 
-// MODELS
+    public static function getPokemonController()
+    {
+        return new PokemonController(self::getPresenter(), self::getPokemonModel());
+    }
+
+    // MODELS
     private static function getUserModel()
     {
         return new UserModel(self::getDatabase());
     }
 
+    private static function getPokemonModel()
+    {
+        return new PokemonModel(self::getDatabase());
+    }
 
     // HELPERS
     public static function getDatabase()
@@ -46,8 +57,9 @@ class Configuration
 
     public static function getRouter()
     {
-        return new Router("getUserController", "get");
+        return new Router("getPokemonController", "getPokemon");
     }
+
     private static function getPresenter()
     {
         return new MustachePresenter("view/template");

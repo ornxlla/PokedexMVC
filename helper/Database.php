@@ -12,7 +12,8 @@ class Database
         }
     }
 
-    public function query($sql){
+    public function query($sql): array
+    {
         $result = mysqli_query($this->conn, $sql);
         return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }

@@ -1,0 +1,41 @@
+
+    <style>
+        .pokemon-card {
+            border-radius: 5px;
+            border: 2px solid red;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            width: 18rem; /* Adjust width as needed */
+        }
+        .pokemon-card p {
+            font-family: "Poppins", sans-serif;
+        }
+        .pokemon-card img {
+            height: 150px;
+            display: block;
+            margin: 0 auto;
+        }
+        .infoPokemon {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div style="display: flex; flex-wrap: wrap;">
+        {{#pokemon}}
+            <div class="pokemon-card">
+                <p class="campo_del_pokemon"><strong>ID:</strong> {{id_pokemon}}</p>
+                <p class="campo_del_pokemon"><strong>Nombre:</strong> {{nombre}}</p>
+                <p class="campo_del_pokemon"><strong>Tipo:</strong></p>
+                <div class="infoPokemon">
+                    <img src="./public/image/{{imagen}}" alt="{{nombre}}">
+                </div>
+            </div>
+        {{/pokemon}}
+    </div>
+</div>
+
+
