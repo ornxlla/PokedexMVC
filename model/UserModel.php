@@ -4,7 +4,7 @@ namespace model;
 
 class UserModel
 {
- private $database;
+    private $database;
 
     public function __construct($database)
     {
@@ -13,7 +13,12 @@ class UserModel
 
     public function getUsuario($usuario, $password)
     {
-        return $this->database->query("SELECT * FROM login WHERE usuario = $usuario AND password = $password");
+        $query = "SELECT * FROM login WHERE usuario = :usuario AND password = :password";
+        $statement = $this->database->prepare($query);
+        $statement->bindParam(':usuario', $usuario);
+        $statement->bindParam(':password', $password);
+        $statement->execute();
+        return $statement->fetch();
     }
 
 }

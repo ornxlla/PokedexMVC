@@ -4,6 +4,39 @@
     <meta charset="UTF-8">
     <title>Pokedex</title>
     <link rel="stylesheet" href="./public/css/index.css">
+    <style>
+        /* Estilos para el formulario de inicio de sesión */
+        .user-info form.formularioIngreso {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .user-info form.formularioIngreso input {
+            height: 40px;
+            width: 150px;
+            margin: 1rem;
+            border-radius: 5px;
+            border: 2px solid red;
+            background-color: white;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .user-info form.formularioIngreso input#ingreso {
+            background-color: red;
+            color: white;
+            font-weight: bold;
+        }
+
+        .user-info form.formularioIngreso input#ingreso:hover {
+            background-color: white;
+            color: red;
+            transition-duration: 0.5s;
+        }
+        .welcome-message {
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -15,7 +48,16 @@
             <h1>Pokedex</h1>
         </div>
         <div class="user-info">
-
+            {{#usuario}}
+                <p class="welcome-message">Bienvenido, {{usuario}} (<a href="logout.php">Cerrar sesión</a>)</p>
+            {{/usuario}}
+            {{^usuario}}
+                <form class="formularioIngreso" action="index.php?action=trylogin" method="post">
+                    <input type="text" name="usuario" placeholder="Usuario">
+                    <input type="password" name="contrasenia" placeholder="Contraseña">
+                    <input id="ingreso" type="submit" name="ingreso" value="Ingresar">
+                </form>
+            {{/usuario}}
         </div>
     </nav>
 </header>

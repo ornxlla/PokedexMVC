@@ -43,17 +43,32 @@
             color: red;
         }
 
+        .modif-elim{
+            border-radius: 5px;
+            border: 2px solid red;
+            margin: 2%;
+            background-color: white;
+            color: red;
+            font-weight: bold;
+            padding: 1%;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .campo_del_pokemon{
+            color: black;
+            font-weight: bold;
+            font-size: 18px;
+            font-family: "Poppins", sans-serif;
+        }
+
     </style>
 </head>
 <body>
 <div class="container mt-5">
-    <div style="display: flex; flex-wrap: wrap;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: center">
         {{#pokemon}}
             <div class="pokemon-card">
-                <p class="campo_del_pokemon"><strong>ID:</strong> {{id_pokemon}}</p>
-                <p class="campo_del_pokemon"><strong>Nombre:</strong> {{nombre}}</p>
-                <p class="campo_del_pokemon"><strong>Tipo 1:</strong> {{tipo1}}</p>
-                <p class="campo_del_pokemon"><strong>Tipo 2:</strong> {{tipo2}}</p>
+                <p class="campo_del_pokemon"><strong>#</strong> {{id_pokemon}}</p>
                 <div class="infoPokemon">
                     <img src="./public/image/tipo_{{tipo1}}.png" alt="{{tipo1}}">
                 </div>
@@ -64,8 +79,8 @@
                     <img src="./public/image/{{imagen}}" alt="{{nombre}}">
                 </div>
                 <div>
-                    <a href="#">Modificar</a>
-                    <a href="./index.php?action=borrar{{id_pokemon}}">Eliminar</a>
+                    <a class="modif-elim" href="./index.php?action=modificarPokemon&id_pokemon={{id_pokemon}}">Modificar</a>
+                    <a class="modif-elim" href="./index.php?action=borrar&id_pokemon={{id_pokemon}}">Eliminar</a>
                 </div>
             </div>
         {{/pokemon}}
