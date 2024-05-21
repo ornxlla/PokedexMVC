@@ -150,5 +150,5 @@ class PokemonController
         $this->model->borrar($id);
         Redirect::to("./index.php");
 
-}
+    }
 }

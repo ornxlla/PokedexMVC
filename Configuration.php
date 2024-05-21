@@ -12,6 +12,7 @@ include_once ("model/PokemonModel.php");
 
 include_once ("helper/Database.php");
 include_once ("helper/Router.php");
+include_once ("helper/Redirect.php");
 include_once ("helper/Presenter.php");
 include_once ("helper/MustachePresenter.php");
 
