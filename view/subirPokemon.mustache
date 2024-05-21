@@ -1,0 +1,65 @@
+<form method="post" enctype="multipart/form-data" action="index.php?action=procesarAlta">
+    <div>
+        <label for="id_pokemon">Id:</label>
+        <input type="number" id="id_pokemon" name="id_pokemon" required>
+    </div>
+    <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+    </div>
+    <div>
+        <label for="tipo1">Tipo:</label>
+        <select id="tipo1" name="tipo1">
+            <option value=""></option>
+           <option value="2">Fuego</option>
+           <option value="3">Agua</option>
+           <option value="16">Bicho</option>
+           <option value="15">Dragon</option>
+           <option value="8">Electrico</option>
+           <option value="13">Fantasma</option>
+           <option value="14">Hielo</option>
+           <option value="10">Lucha</option>
+           <option value="6">Normal</option>
+           <option value="1">Planta</option>
+           <option value="11">Psiquico</option>
+           <option value="12">Roca</option>
+           <option value="9">Tierra</option>
+           <option value="7">Veneno</option>
+           <option value="4">Volador</option>
+       </select>
+    </div>
+    <div>
+        <label for="tipo2">Tipo secundario:</label>
+        <select id="tipo2" name="tipo2">
+            <option value=""></option>
+            <option value="2">Fuego</option>
+            <option value="3">Agua</option>
+            <option value="16">Bicho</option>
+            <option value="15">Dragon</option>
+            <option value="8">Electrico</option>
+            <option value="13">Fantasma</option>
+            <option value="14">Hielo</option>
+            <option value="10">Lucha</option>
+            <option value="6">Normal</option>
+            <option value="1">Planta</option>
+            <option value="11">Psiquico</option>
+            <option value="12">Roca</option>
+            <option value="9">Tierra</option>
+            <option value="7">Veneno</option>
+            <option value="4">Volador</option>
+        </select>
+    </div>
+    <div>
+        <label for="imagen">Imagen:</label>
+        <input type="file" id="imagen" name="imagen" required>
+    </div>
+    <div>
+        <button type="submit" name="enviar">Subir Pokémon</button>
+    </div>
+    {{#altaOk}}
+        <p>{{altaOk}}</p>
+    {{/altaOk}}
+    {{#error}}
+        <p>{{error}}</p>
+    {{/error}}
+</form>

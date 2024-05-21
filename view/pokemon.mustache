@@ -54,6 +54,19 @@
             color: red;
         }
 
+        .subirPokemon{
+            margin: 1rem;
+            height: 40px;
+            width: auto;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 2px solid red;
+            background-color: red;
+            color: white;
+            padding-right: 1rem;
+            padding-left: 1rem;
+        }
+
     </style>
 </head>
 <body>
@@ -63,9 +76,11 @@
     <input class="buscador" type="text" name="campoABuscar" id="campoABuscar"  placeholder="Ingrese el nombre, tipo o número de Pokémon">
     <input class="botonBuscar" type="submit" name="busqueda" value="Buscar">
 </form>
+<a class="subirPokemon" href="./index.php?action=subirPokemon">Subir Pokemon</a>
 <div class="container mt-5">
     <div style="display: flex; flex-wrap: wrap;">
         {{#pokemon}}
+            <a href="./index.php?action=vistaPokemon&id={{id_pokemon}}">
             <div class="pokemon-card">
                 <p class="campo_del_pokemon"><strong>ID:</strong> {{id_pokemon}}</p>
                 <p class="campo_del_pokemon"><strong>Nombre:</strong> {{nombre}}</p>
@@ -82,10 +97,11 @@
                 </div>
                 <div>
                     <a href="#">Modificar</a>
-                    <a href="#">Eliminar</a>
+                    <a href="./index.php?action=borrar&id_pokemon={{id_pokemon}}">Eliminar</a>
                 </div>
             </div>
+            </a>
         {{/pokemon}}
-        <a href="#">Subir Pokemon</a>
+
     </div>
 </div>

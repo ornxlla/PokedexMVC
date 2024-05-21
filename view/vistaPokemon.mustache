@@ -1,0 +1,64 @@
+<head>
+    <style>
+
+        p {
+            font-size: 30px;
+        }
+
+        .tipoPokemon img{
+            width: 300px;
+            height: 50px;
+        }
+        .infoPokemon img{
+            width: 100px;
+            height: 20px;
+        }
+
+        .pokemonFoto img{
+            width: 300px;
+            height: 300px;
+        }
+        .botonVolver{
+            margin: 1rem;
+            height: 40px;
+            width: auto;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 2px solid red;
+            background-color: red;
+            color: white;
+            padding-right: 1rem;
+            padding-left: 1rem;
+        }
+
+        .botonVolver:hover{
+            border: 2px solid red;
+            background-color: white;
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+{{#pokemon}}
+    <div class="pokemon-card">
+        <div class="acomodarVista">
+        <p class="campo_del_pokemon"><strong>ID:</strong> {{id_pokemon}}</p>
+        <p class="campo_del_pokemon"><strong>Nombre:</strong> {{nombre}}</p>
+        <p class="campo_del_pokemon"><strong>Tipo 1:</strong> {{tipo1}}</p>
+        <p class="campo_del_pokemon"><strong>Tipo 2:</strong> {{tipo2}}</p>
+        </div>
+        <div class="infoPokemon">
+            <img src="./public/image/tipo_{{tipo1}}.png" alt="{{tipo1}}">
+        <div class="tipoPokemon">
+            <img src="./public/image/tipo_{{tipo2}}.png" alt="{{tipo2}}">
+        </div>
+        <div class="pokemonFoto">
+            <img src="./public/image/{{imagen}}" alt="{{nombre}}">
+        </div>
+        <div>
+        </div>
+    </div>
+{{/pokemon}}
+    <a class="botonVolver" href="./index.php">Volver</a>
+</body>

@@ -27,4 +27,9 @@ class Database
     {
         mysqli_close($this->conn);
     }
+
+    public function prepare($query)
+    {
+        return $this->conn->prepare($query);
+    }
 }
