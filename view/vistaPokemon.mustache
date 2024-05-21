@@ -50,8 +50,13 @@
         </div>
         <div class="infoPokemon">
             <img src="./public/image/tipo_{{tipo1}}.png" alt="{{tipo1}}">
-        <div class="tipoPokemon">
-            <img src="./public/image/tipo_{{tipo2}}.png" alt="{{tipo2}}">
+            {{#tipo2}}
+
+            <div class="tipoPokemon">
+                <img src="./public/image/tipo_{{.}}.png" alt="{{.}}">{{/tipo2}}
+                {{^tipo2}}
+            {{/tipo2}}
+
         </div>
         <div class="pokemonFoto">
             <img src="./public/image/{{imagen}}" alt="{{nombre}}">

@@ -67,7 +67,7 @@ class PokemonController
                 $pokemonImg = $directorioImagen . $nombreImagen;
 
                 if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $pokemonImg)) {
-                    $resultado = $this->nuevoPokemon($id_pokemon, $nombre, $tipo1, $tipo2, $pokemonImg);
+                    $resultado = $this->nuevoPokemon($id_pokemon, $nombre, $tipo1, $tipo2, $nombreImagen);
                     if ($resultado) {
                         $data["altaOk"] = "Los datos fueron ingresados correctamente";
                     } else {

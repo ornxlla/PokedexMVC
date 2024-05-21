@@ -11,7 +11,7 @@ class PokemonModel
     public function getPokemons()
     {
         return $this->database->query('
-            SELECT POKEMON.*, TIPO1.descripcion AS tipo1, COALESCE(TIPO2.descripcion, "N/A") AS tipo2
+            SELECT POKEMON.*, TIPO1.descripcion AS tipo1, COALESCE(TIPO2.descripcion, "") AS tipo2
             FROM POKEMON
             INNER JOIN TIPO AS TIPO1 ON POKEMON.id_tipo_pokemon1 = TIPO1.id_tipo_pokemon
             LEFT JOIN TIPO AS TIPO2 ON POKEMON.id_tipo_pokemon2 = TIPO2.id_tipo_pokemon
@@ -22,7 +22,7 @@ class PokemonModel
     {
 
         return $this->database->query("
-        SELECT POKEMON.*, TIPO1.descripcion AS tipo1, COALESCE(TIPO2.descripcion, 'N/A') AS tipo2
+        SELECT POKEMON.*, TIPO1.descripcion AS tipo1, COALESCE(TIPO2.descripcion, '') AS tipo2
         FROM POKEMON
         INNER JOIN TIPO AS TIPO1 ON POKEMON.id_tipo_pokemon1 = TIPO1.id_tipo_pokemon
         LEFT JOIN TIPO AS TIPO2 ON POKEMON.id_tipo_pokemon2 = TIPO2.id_tipo_pokemon
@@ -36,7 +36,7 @@ class PokemonModel
     public function getPokemonById($id)
     {
         $stmt = $this->database->prepare('
-            SELECT POKEMON.*, TIPO1.descripcion AS tipo1, COALESCE(TIPO2.descripcion, "N/A") AS tipo2
+            SELECT POKEMON.*, TIPO1.descripcion AS tipo1, COALESCE(TIPO2.descripcion, "") AS tipo2
             FROM POKEMON
             INNER JOIN TIPO AS TIPO1 ON POKEMON.id_tipo_pokemon1 = TIPO1.id_tipo_pokemon
             LEFT JOIN TIPO AS TIPO2 ON POKEMON.id_tipo_pokemon2 = TIPO2.id_tipo_pokemon
@@ -64,6 +64,7 @@ class PokemonModel
     //ABM
     public function alta($id_pokemon, $nombre, $tipo1, $tipo2, $rutaImagen)
     {
+
         $sql = 'INSERT INTO POKEMON (id_pokemon, nombre, id_tipo_pokemon1, id_tipo_pokemon2, imagen) VALUES (?, ?, ?, ?, ?)';
         $stmt = $this->database->prepare($sql);
 
