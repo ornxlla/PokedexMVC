@@ -60,6 +60,8 @@ class PokemonModel
 
     }
 
+
+    //ABM
     public function alta($id_pokemon, $nombre, $tipo1, $tipo2, $rutaImagen)
     {
         $sql = 'INSERT INTO POKEMON (id_pokemon, nombre, id_tipo_pokemon1, id_tipo_pokemon2, imagen) VALUES (?, ?, ?, ?, ?)';
@@ -69,6 +71,29 @@ class PokemonModel
             $stmt->bind_param("issss", $id_pokemon, $nombre, $tipo1, $tipo2, $rutaImagen);
             return $stmt->execute();
         } else {
+            return false;
+        }
+    }
+
+    public function modificar($id_pokemon, $nombre, $tipo1, $tipo2, $rutaImagen)
+    {
+        $sql = 'UPDATE POKEMON SET nombre = ?, id_tipo_pokemon1 = ?, id_tipo_pokemon2 = ?';
+        if ($rutaImagen) {
+            $sql .= ', imagen = ?';
+        }
+        $sql .= ' WHERE id_pokemon = ?';
+
+        $stmt = $this->database->prepare($sql);
+
+        if ($stmt) {
+            if ($rutaImagen) {
+                $stmt->bind_param("ssssi", $nombre, $tipo1, $tipo2, $rutaImagen, $id_pokemon);
+            } else {
+                $stmt->bind_param("sssi", $nombre, $tipo1, $tipo2, $id_pokemon);
+            }
+            return $stmt->execute();
+        } else {
+            echo "Error al preparar la consulta: " . $this->database->error;
             return false;
         }
     }
