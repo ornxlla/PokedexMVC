@@ -79,7 +79,6 @@ class PokemonController
             } else {
                 $data["error"] = "Los campos no pueden estar vacíos";
             }
-
             $this->presenter->render("subirPokemon", $data);
         }
     }
@@ -121,7 +120,8 @@ class PokemonController
                     $pokemonImg = null;
                 }
 
-                $resultado = $this->pokemonModificado($id_pokemon, $nombre, $tipo1, $tipo2, $pokemonImg);
+                $resultado = $this->pokemonModificado($id_pokemon, $nombre, $tipo1, $tipo2, $nombreImagen);
+
                 if ($resultado) {
                     $data["altaOk"] = "Los datos fueron ingresados correctamente";
                 } else {
@@ -130,7 +130,7 @@ class PokemonController
             } else {
                 $data["error"] = "Los campos no pueden estar vacíos";
             }
-
+            $data["pokemon"] = $this->model->buscar($id_pokemon);
             $this->presenter->render("modificarPokemon", $data);
         }
     }

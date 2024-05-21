@@ -81,7 +81,7 @@
         <div>
             <label for="tipo2">Tipo secundario:</label>
             <select id="tipo2" name="tipo2">
-                <option value="{{tipo2}}">{{tipo2}}</option>
+                <option value="{{id_tipo_pokemon2}}" selected disabled>{{tipo2}}</option>
                 <option value=""></option>
                 <option value="2">Fuego</option>
                 <option value="3">Agua</option>
@@ -110,7 +110,7 @@
         <div>
             <button type="submit" name="enviar">Modificar Pokémon</button>
         </div>
-</div>
+</div>{{/pokemon}}
         {{#altaOk}}
             <p>{{altaOk}}</p>
         {{/altaOk}}
@@ -118,6 +118,6 @@
             <p>{{error}}</p>
         {{/error}}
     </form>
-{{/pokemon}}
+
 
 <a class="botonVolver" href="./index.php">Volver</a>
