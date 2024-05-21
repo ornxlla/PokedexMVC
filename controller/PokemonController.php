@@ -15,20 +15,20 @@ class PokemonController
         $this->model = $model;
     }
 
-
-
-    public function getPokemon()
+    public function getPokemons()
     {
         $data["pokemon"] = $this->model->getPokemons();
         $this->presenter->render("pokemon", $data);
-
-
     }
 
     public function busquedaPokemon()
     {
-        // Lógica para buscar un Pokémon
+        if (isset($_GET["busqueda"]) && isset($_GET["campoABuscar"])) {
+            $campoABuscar = $_GET["campoABuscar"];
+            $data["pokemon"] = $this->model->buscar($campoABuscar);
+            $this->presenter->render("buscar", $data);
+        } else {
+            echo "error";
+        }
     }
-
-
 }

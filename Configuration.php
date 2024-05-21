@@ -19,8 +19,6 @@ include_once ('vendor/mustache/src/Mustache/Autoloader.php');
 
 class Configuration
 {
-
-    // CONTROLLERS
     // CONTROLLERS
     public static function getUserController()
     {
@@ -57,7 +55,7 @@ class Configuration
 
     public static function getRouter()
     {
-        return new Router("getPokemonController", "getPokemon");
+        return new Router("getPokemonController", "getPokemons");
     }
 
     private static function getPresenter()

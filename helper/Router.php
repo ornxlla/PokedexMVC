@@ -1,8 +1,7 @@
 <?php
 
 class Router
-{
-    private $defaultController;
+{private $defaultController;
     private $defaultMethod;
 
     public function __construct($defaultController, $defaultMethod)

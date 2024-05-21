@@ -1,12 +1,11 @@
 <?php
-include_once("Configuration.php");
 
-$router = Configuration::getRouter();
+include_once('Configuration.php');
 
-$controller = isset($_GET["controller"]) ? $_GET["controller"] : "pokemon";  // Default to 'pokemon' controller
-$action = isset($_GET["action"]) ? $_GET["action"] : "getPokemon";  // Default to 'getPokemon' action
+$configuration = new Configuration();
+$router = $configuration->getRouter();
 
-$router->route($controller, $action);
+$module = $_GET['module'] ?? 'pokemon';
+$method = $_GET['action'] ?? 'getPokemons';
 
-// index.php?controller=tours&action=get
-// tours/get
+$router->route($module, $method);

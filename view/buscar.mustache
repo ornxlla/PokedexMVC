@@ -9,8 +9,7 @@
             background-color: #fff;
             width: 18rem; /* Adjust width as needed */
         }
-        .pokemon-card p {
-        }
+
         .pokemonFoto img{
             height: 150px;
             display: block;
@@ -25,17 +24,7 @@
             height: 30px;
         }
 
-       .buscador{
-            margin: 1rem;
-            height: 40px;
-            width: 80%;
-            border-radius: 5px;
-            border: 2px solid red;
-            background-color: white;
-            font-size: 18px;
-        }
-
-        .botonBuscar{
+        .botonVolver{
             margin: 1rem;
             height: 40px;
             width: auto;
@@ -48,7 +37,7 @@
             padding-left: 1rem;
         }
 
-        .botonBuscar:hover{
+        .botonVolver:hover{
             border: 2px solid red;
             background-color: white;
             color: red;
@@ -57,12 +46,6 @@
     </style>
 </head>
 <body>
-<form action="/Pokedex2/index.php" method="get">
-    <input type="hidden" name="module" value="pokemon">
-    <input type="hidden" name="action" value="busquedaPokemon">
-    <input class="buscador" type="text" name="campoABuscar" id="campoABuscar"  placeholder="Ingrese el nombre, tipo o número de Pokémon">
-    <input class="botonBuscar" type="submit" name="busqueda" value="Buscar">
-</form>
 <div class="container mt-5">
     <div style="display: flex; flex-wrap: wrap;">
         {{#pokemon}}
@@ -86,6 +69,7 @@
                 </div>
             </div>
         {{/pokemon}}
-        <a href="#">Subir Pokemon</a>
     </div>
 </div>
+<a class="botonVolver" href="/Pokedex2/index.php">Volver</a>
+</body>
