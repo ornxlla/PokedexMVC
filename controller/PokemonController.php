@@ -64,9 +64,9 @@ class PokemonController
     }
 
     // MODIFICAR
-    public function pokemonModificado($id_pokemon, $nombre, $tipo1, $tipo2, $pokemonImg)
+    public function pokemonModificado($id_pokemon, $nombre, $tipo1, $tipo2, $pokemonImg, $descripcion)
     {
-        return $this->model->modificar($id_pokemon, $nombre, $tipo1, $tipo2, $pokemonImg);
+        return $this->model->modificar($id_pokemon, $nombre, $tipo1, $tipo2, $pokemonImg, $descripcion);
     }
 
 
@@ -110,7 +110,7 @@ class PokemonController
                 $nombre = ucfirst($_POST["nombre"]);
                 $tipo1 = strtolower($_POST["tipo1"]);
                 $tipo2 = !empty($_POST["tipo2"]) ? strtolower($_POST["tipo2"]) : null;
-                $descripcion = $_POST["descripcion"]; // Agrega el campo de descripción
+                $descripcion = $_POST["descripcion"];
 
                 $directorioImagen = "./public/image/";
                 $nombreImagen = $_FILES["imagen"]["name"];
@@ -129,6 +129,7 @@ class PokemonController
 
                 if ($resultado) {
                     $data["altaOk"] = "Los datos fueron ingresados correctamente";
+                    Redirect::to("./index.php");
                 } else {
                     $data["error"] = "Los datos no pudieron ser ingresados";
                 }
