@@ -37,33 +37,74 @@
             color: red;
         }
 
+        .vista{
+            display: flex;
+            justify-content: center;
+            margin:2%;
+        }
+
+        .fotoYnombre{
+            display: flex;
+        }
+
+        p.campo_del_pokemon {
+            font-size: 50px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+
+        .infoPokemon{
+            border-radius: 5px;
+            border: 2px solid red;
+            width: 50%;
+            padding: 3%;
+        }
+
+        .descrip{
+            font-family: "Poppins", sans-serif;
+            font-size: 25px;
+        }
+
+
     </style>
 </head>
 <body>
 {{#pokemon}}
     <div class="pokemon-card">
-        <div class="acomodarVista">
-        <p class="campo_del_pokemon"><strong>ID:</strong> {{id_pokemon}}</p>
-        <p class="campo_del_pokemon"><strong>Nombre:</strong> {{nombre}}</p>
-        <p class="campo_del_pokemon"><strong>Tipo 1:</strong> {{tipo1}}</p>
-        <p class="campo_del_pokemon"><strong>Tipo 2:</strong> {{tipo2}}</p>
-        </div>
-        <div class="infoPokemon">
-            <img src="./public/image/tipo_{{tipo1}}.png" alt="{{tipo1}}">
-            {{#tipo2}}
+        <div class="vista">
 
-            <div class="tipoPokemon">
-                <img src="./public/image/tipo_{{.}}.png" alt="{{.}}">{{/tipo2}}
+            <div class="fotoYNombre">
+                <div class="acomodarVista">
+                    <p class="campo_del_pokemon"><strong></strong> {{nombre}}</p>
+                    <p class="campo_del_pokemon"><strong>#</strong> {{id_pokemon}}</p>
+
+                </div>
+
+                <div class="pokemonFoto">
+                    <img src="./public/image/{{imagen}}" alt="{{nombre}}">
+                </div>
+            </div>
+
+
+            <div class="infoPokemon">
+                <img src="./public/image/tipo_{{tipo1}}.png" alt="{{tipo1}}">
+                {{#tipo2}}
+
+                <div class="tipoPokemon">
+                    <img src="./public/image/tipo_{{.}}.png" alt="{{.}}">{{/tipo2}}
                 {{^tipo2}}
-            {{/tipo2}}
+                {{/tipo2}}
 
+            </div>
+                <p class="descrip"><strong></strong> {{descripcion}}</p>
+                <div class="descripcion">
+
+                </div>
+
+            </div>
         </div>
-        <div class="pokemonFoto">
-            <img src="./public/image/{{imagen}}" alt="{{nombre}}">
-        </div>
-        <div>
-        </div>
-    </div>
 {{/pokemon}}
-    <a class="botonVolver" href="./index.php">Volver</a>
+    <form method="get" action="index.php">';
+        <button class="botonVolver" type="submit">Volver</button>';
+    </form>';
 </body>
