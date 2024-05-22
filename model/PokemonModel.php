@@ -62,23 +62,22 @@ class PokemonModel
 
 
     //ABM
-    public function alta($id_pokemon, $nombre, $tipo1, $tipo2, $rutaImagen)
+    public function alta($id_pokemon, $nombre, $tipo1, $tipo2, $descripcion, $rutaImagen)
     {
-
-        $sql = 'INSERT INTO POKEMON (id_pokemon, nombre, id_tipo_pokemon1, id_tipo_pokemon2, imagen) VALUES (?, ?, ?, ?, ?)';
+        $sql = 'INSERT INTO POKEMON (id_pokemon, nombre, id_tipo_pokemon1, id_tipo_pokemon2, descripcion, imagen) VALUES (?, ?, ?, ?, ?, ?)';
         $stmt = $this->database->prepare($sql);
 
         if ($stmt) {
-            $stmt->bind_param("issss", $id_pokemon, $nombre, $tipo1, $tipo2, $rutaImagen);
+            $stmt->bind_param("isssss", $id_pokemon, $nombre, $tipo1, $tipo2, $descripcion, $rutaImagen);
             return $stmt->execute();
         } else {
             return false;
         }
     }
 
-    public function modificar($id_pokemon, $nombre, $tipo1, $tipo2, $rutaImagen)
+    public function modificar($id_pokemon, $nombre, $tipo1, $tipo2, $descripcion, $rutaImagen)
     {
-        $sql = 'UPDATE POKEMON SET nombre = ?, id_tipo_pokemon1 = ?, id_tipo_pokemon2 = ?';
+        $sql = 'UPDATE POKEMON SET nombre = ?, id_tipo_pokemon1 = ?, id_tipo_pokemon2 = ?, descripcion = ?';
         if ($rutaImagen) {
             $sql .= ', imagen = ?';
         }
@@ -88,9 +87,9 @@ class PokemonModel
 
         if ($stmt) {
             if ($rutaImagen) {
-                $stmt->bind_param("ssssi", $nombre, $tipo1, $tipo2, $rutaImagen, $id_pokemon);
+                $stmt->bind_param("sssssi", $nombre, $tipo1, $tipo2, $descripcion, $rutaImagen, $id_pokemon);
             } else {
-                $stmt->bind_param("sssi", $nombre, $tipo1, $tipo2, $id_pokemon);
+                $stmt->bind_param("ssssi", $nombre, $tipo1, $tipo2, $descripcion, $id_pokemon);
             }
             return $stmt->execute();
         } else {
@@ -98,6 +97,7 @@ class PokemonModel
             return false;
         }
     }
+
 
     public function borrar($id)
     {

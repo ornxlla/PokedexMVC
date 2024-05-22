@@ -49,39 +49,11 @@ class PokemonController
 
     //SUBIR POKEMON
 
-    public function nuevoPokemon($id_pokemon, $nombre, $tipo1, $tipo2, $pokemonImg) {
-        return $this->model->alta($id_pokemon, $nombre, $tipo1, $tipo2, $pokemonImg);
+    public function nuevoPokemon($id_pokemon, $nombre, $tipo1, $tipo2, $pokemonImg,$descripcion) {
+        return $this->model->alta($id_pokemon, $nombre, $tipo1, $tipo2, $pokemonImg, $descripcion);
     }
 
-    public function procesarAlta() {
-        $data = array();
-        if (isset($_POST["enviar"])) {
-            if (!empty($_POST["nombre"]) && !empty($_POST["tipo1"]) && !empty($_POST["id_pokemon"])) {
-                $id_pokemon = $_POST["id_pokemon"];
-                $nombre = ucfirst($_POST["nombre"]);
-                $tipo1 = strtolower($_POST["tipo1"]);
-                $tipo2 = !empty($_POST["tipo2"]) ? strtolower($_POST["tipo2"]) : null;
 
-                $directorioImagen = "./public/image/";
-                $nombreImagen = $_FILES["imagen"]["name"];
-                $pokemonImg = $directorioImagen . $nombreImagen;
-
-                if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $pokemonImg)) {
-                    $resultado = $this->nuevoPokemon($id_pokemon, $nombre, $tipo1, $tipo2, $nombreImagen);
-                    if ($resultado) {
-                        $data["altaOk"] = "Los datos fueron ingresados correctamente";
-                    } else {
-                        $data["error"] = "Los datos no pudieron ser ingresados";
-                    }
-                } else {
-                    $data["error"] = "Error al subir la imagen";
-                }
-            } else {
-                $data["error"] = "Los campos no pueden estar vacíos";
-            }
-            $this->presenter->render("subirPokemon", $data);
-        }
-    }
 
     public function mostrarPokemon(){
         $this->presenter->render("subirPokemon");
@@ -98,6 +70,38 @@ class PokemonController
     }
 
 
+    public function procesarAlta() {
+        $data = array();
+        if (isset($_POST["enviar"])) {
+            if (!empty($_POST["nombre"]) && !empty($_POST["tipo1"]) && !empty($_POST["id_pokemon"])) {
+                $id_pokemon = $_POST["id_pokemon"];
+                $nombre = ucfirst($_POST["nombre"]);
+                $tipo1 = strtolower($_POST["tipo1"]);
+                $tipo2 = !empty($_POST["tipo2"]) ? strtolower($_POST["tipo2"]) : null;
+                $descripcion = $_POST["descripcion"]; // Agrega el campo de descripción
+
+                $directorioImagen = "./public/image/";
+                $nombreImagen = $_FILES["imagen"]["name"];
+                $pokemonImg = $directorioImagen . $nombreImagen;
+
+                if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $pokemonImg)) {
+                    // Aquí es donde necesitas pasar la descripción
+                    $resultado = $this->nuevoPokemon($id_pokemon, $nombre, $tipo1, $tipo2, $descripcion, $nombreImagen); // Modificación
+                    if ($resultado) {
+                        $data["altaOk"] = "Los datos fueron ingresados correctamente";
+                    } else {
+                        $data["error"] = "Los datos no pudieron ser ingresados";
+                    }
+                } else {
+                    $data["error"] = "Error al subir la imagen";
+                }
+            } else {
+                $data["error"] = "Los campos no pueden estar vacíos";
+            }
+            $this->presenter->render("subirPokemon", $data);
+        }
+    }
+
     public function procesarModificacion(){
         $data = array();
         if (isset($_POST["enviar"])) {
@@ -106,6 +110,7 @@ class PokemonController
                 $nombre = ucfirst($_POST["nombre"]);
                 $tipo1 = strtolower($_POST["tipo1"]);
                 $tipo2 = !empty($_POST["tipo2"]) ? strtolower($_POST["tipo2"]) : null;
+                $descripcion = $_POST["descripcion"]; // Agrega el campo de descripción
 
                 $directorioImagen = "./public/image/";
                 $nombreImagen = $_FILES["imagen"]["name"];
@@ -120,7 +125,7 @@ class PokemonController
                     $pokemonImg = null;
                 }
 
-                $resultado = $this->pokemonModificado($id_pokemon, $nombre, $tipo1, $tipo2, $nombreImagen);
+                $resultado = $this->pokemonModificado($id_pokemon, $nombre, $tipo1, $tipo2, $descripcion, $nombreImagen);
 
                 if ($resultado) {
                     $data["altaOk"] = "Los datos fueron ingresados correctamente";
@@ -134,6 +139,7 @@ class PokemonController
             $this->presenter->render("modificarPokemon", $data);
         }
     }
+
 
     public function modificarPokemon()
     {
