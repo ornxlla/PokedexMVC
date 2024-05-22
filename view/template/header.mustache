@@ -58,6 +58,11 @@
                     <input id="ingreso" type="submit" name="ingreso" value="Ingresar">
                 </form>
             {{/usuario}}
+            {{#loginError}}
+                <h1 class="error-message">
+                    {{loginError}}
+                </h1>";
+            {{/loginError}}
         </div>
     </nav>
 </header>

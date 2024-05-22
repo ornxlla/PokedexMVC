@@ -6,6 +6,7 @@ use Presenter;
 
 class UserController
 {
+
     private $model;
     private $presenter;
 
@@ -15,65 +16,53 @@ class UserController
         $this->model = $model;
     }
 
-    public function getUsuario()
-    {
-        $usuarios = $this->model->getUsuario();
-        $this->presenter->render("sesionIniciada", ["usuarios" => $usuarios]);
-    }
-
-    public function trylogin()
-    {
-        if(isset($_POST["ingreso"])){
-            if(isset($_POST["usuario"]) && !empty($_POST["usuario"]) && isset($_POST["contrasenia"]) && !empty($_POST["contrasenia"])){
-                $resultadosQuery = $this->model->getUsuario($_POST["usuario"], $_POST["contrasenia"]);
-                if(!empty($resultadosQuery)){
-                    foreach($resultadosQuery as $row){
-                        $sesion = $this->login($row['usuario'], $row['es_administrador']);
-                        if($sesion === PHP_SESSION_ACTIVE){
-                            $data['usuario'] = $row['usuario'];
-                            if($row['es_administrador'] == 1){
-                                $data['usuario'] = $data['usuario'] . " (Administrador)";
+    //Revisar funcionamiento
+    /*
+        public function trylogin()
+        {
+            if(isset($_POST["ingreso"])){
+                if(isset($_POST["usuario"]) && !empty($_POST["usuario"]) && isset($_POST["contrasenia"]) && !empty($_POST["contrasenia"])){
+                    $resultadosQuery = $this->model->getUsuario($_POST["usuario"], $_POST["contrasenia"]);
+                    if(!empty($resultadosQuery)){
+                        foreach($resultadosQuery as $row){
+                            $sesion = $this->login($row['usuario'], $row['es_administrador']);
+                            if($sesion === PHP_SESSION_ACTIVE){
+                                $data['usuario'] = $row['usuario'];
+                                if($row['es_administrador'] == 1){
+                                    $data['usuario'] = $data['usuario'] . " (Administrador)";
+                                }
+                                $this->presenter->render("sesionIniciada", $data);
+                                return;
+                            }else{
+                                $data["errors"] = "Error al iniciar sesión.";
                             }
-                            $this->presenter->render("sesionIniciada", $data);
-                            return;
-                        }else{
-                            $data["errors"] = "Error al iniciar sesión.";
                         }
+                    }else{
+                        $data["errors"] = "Las credenciales son incorrectas.";
                     }
                 }else{
-                    $data["errors"] = "Las credenciales son incorrectas.";
+                    $data["errors"] = "Por favor, llene todos los campos.";
                 }
-            }else{
-                $data["errors"] = "Por favor, llene todos los campos.";
             }
+            // Renderizamos la vista de login si hubo algún error o si no se realizó ninguna acción
+            $this->presenter->render("pokemon", $data);
         }
-        // Renderizamos la vista de login si hubo algún error o si no se realizó ninguna acción
-        $this->presenter->render("login", $data ?? []);
-    }
 
-    public function get()
-    {
-        session_start();
-        if(isset($_SESSION['usuario'])){
-            $this->presenter->render("sesionIniciada", ["usuarios" => $_SESSION['usuario']]);
-        }else{
-            $this->presenter->render("login");
+
+        public function login($usuario, $admin)
+        {
+            session_start();
+            $_SESSION["usuario"] = $usuario;
+            $_SESSION["admin"] = $admin;
+            return session_status();
         }
-    }
 
-    public function login($usuario, $admin)
-    {
-        session_start();
-        $_SESSION["usuario"] = $usuario;
-        $_SESSION["admin"] = $admin;
-        return session_status();
-    }
-
-    private function logOut()
-    {
-        session_start();
-        session_destroy();
-        header("Location: index.php");
-        exit();
-    }
+        private function logOut()
+        {
+            session_start();
+            session_destroy();
+            header("Location: index.php");
+            exit();
+        }
+    */
 }
